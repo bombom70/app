@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Routes, Route, Link } from 'react-router-dom'
+import { Home } from './pages/Home.jsx'
+import { About } from './pages/About.jsx'
+import { Post } from './pages/Post.jsx'
+import { NotFound } from './pages/NotFound.jsx'
+import { Col, Container, Row } from 'react-bootstrap'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Row>
+        <Col md='12'>
+          <header>
+          <Link to="/about">About</Link><br/>
+          <Link to="/">Home</Link>
+          <hr/>
+        </header>
+        <Routes>
+          <Route path='/' index element={<Home/>}/>
+          <Route path='/about' element={<About/>}/>
+          <Route path='/posts/:id' element={<Post/>}/>
+          <Route path='*' element={<NotFound/>}/>
+        </Routes>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
